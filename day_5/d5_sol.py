@@ -1,10 +1,8 @@
 import re
+from utils import read_input
 
-# Load input for the games
-# with open('./input.txt','r') as f:
-with open('./day_5/input.txt','r') as f:
-
-    input = f.readlines()
+# Load input
+input = read_input('./day_5/input.txt')
 
 #
 # Part 1 solution
