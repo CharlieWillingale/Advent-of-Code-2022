@@ -1,6 +1,6 @@
 # Advent-of-Code-2022
 
-Solutions for Advernt Of Code 2022
+Solutions for Advent Of Code 2022
 - [x] Day 1
 - [x] Day 2
 - [x] Day 3
