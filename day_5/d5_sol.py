@@ -29,16 +29,22 @@ def part1():
     # Fill stckas w/ initial configuration
     for line in input:
         
-    
+        # Ensures we stop adding to the lists once we hit the instructions section of the input
         if len(line.strip()) > 1 and line.strip()[0] != '1':
+
+            # replace 3 consecutive spaces with non-whitespace character to hold position in split
             line = re.sub(r'\s{3}',r' - ',line)
+
             for item in range(0,len(line.split())):
+
+                # Check for our spacing placeholder else add item to stack
                 if line.split()[item] != '-':
                     stacks[item].append(line.split()[item].strip('[').strip(']'))
 
         else:
             break
 
+    # reverse stack to match order of visual input (above append adds to end of list)
     for stack in stacks:
         stack.reverse()
 
@@ -87,7 +93,9 @@ def part2():
         
     
         if len(line.strip()) > 1 and line.strip()[0] != '1':
+
             line = re.sub(r'\s{3}',r' - ',line)
+
             for item in range(0,len(line.split())):
                 if line.split()[item] != '-':
                     stacks[item].append(line.split()[item].strip('[').strip(']'))
@@ -113,6 +121,7 @@ def part2():
                 top_item = stacks[move_from].pop(-1)
                 move_stack.append(top_item)
 
+            # reverse order to account for items keeping position/ configuration from stack
             for item in move_stack[::-1]:  
                 stacks[move_to].append(item)
 
