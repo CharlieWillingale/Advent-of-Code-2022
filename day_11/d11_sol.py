@@ -84,9 +84,8 @@ class Monkey:
             for i in range(0, len(self.items)):
 
                 old = self.items[0]
-                new = self.run_operation(old)
-                # new = new // 3
-                new = new % 26327730
+                new = old % (11*2*5*7*17*19*3*13)
+                new = self.run_operation(new)
 
                 if self.run_test_condition(new):
                     self.run_true_outcome(new)
@@ -99,12 +98,12 @@ monkey_0 = Monkey()
 monkey_1 = Monkey()
 monkey_2 = Monkey()
 monkey_3 = Monkey()
-# monkey_4 = Monkey()
-# monkey_5 = Monkey()
-# monkey_6 = Monkey()
-# monkey_7 = Monkey()
+monkey_4 = Monkey()
+monkey_5 = Monkey()
+monkey_6 = Monkey()
+monkey_7 = Monkey()
 
-monkeys = [monkey_0, monkey_1, monkey_2, monkey_3]#, monkey_4, monkey_5, monkey_6, monkey_7]
+monkeys = [monkey_0, monkey_1, monkey_2, monkey_3, monkey_4, monkey_5, monkey_6, monkey_7]
 monkey_num = 0
 
 
@@ -125,18 +124,12 @@ for line in input:
             monkeys[monkey_num].set_test_condition(test)
 
         elif line.strip().split()[1][0] == 't':
-            true_outcome = line.strip().split(':')[1]
-            true_outcome = true_outcome.replace(' throw to ','')
-            true_outcome = true_outcome.replace(' ','_')
-            true_outcome += '.items.append(move_item)'
+            true_outcome = line.strip().split(':')[1].replace(' throw to ','').replace(' ','_') + '.items.append(move_item)'
 
             monkeys[monkey_num].set_true_outcome(true_outcome)
         
         elif line.strip().split()[1][0] == 'f':
-            false_outcome = line.strip().split(':')[1]
-            false_outcome = false_outcome.replace(' throw to ','')
-            false_outcome = false_outcome.replace(' ','_')
-            false_outcome += '.items.append(move_item)'
+            false_outcome = line.strip().split(':')[1].replace(' throw to ','').replace(' ','_') + '.items.append(move_item)'
 
             monkeys[monkey_num].set_false_outcome(false_outcome)
 
@@ -152,8 +145,8 @@ for _ in range(0,10_000):
 
         monkey.run_test()
 
-for m, n in zip(monkeys, range(0,len(monkeys))):
-    print('Monkey_'+str(n)+': ',m.inspection_count)
+# for m, n in zip(monkeys, range(0,len(monkeys))):
+#     print('Monkey_'+str(n)+': ',m.inspection_count)
 
 inspect_list = []
 for monkey in monkeys:
